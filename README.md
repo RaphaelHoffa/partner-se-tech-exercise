@@ -38,15 +38,16 @@ If you have not been provided with a Chainguard Libraries token and identity ID,
 
 ## Candidate deliverables
 
-Candidates should submit:
+Candidates should submit a link to their forked repository containing:
 
 1. Updated code and configuration
-2. A short write-up describing:
+2. A write-up **committed to the repository** (Markdown preferred) describing:
    - what they changed
    - why they changed it
    - what risks or issues were reduced
    - tradeoffs they made
    - what they would do next in a real customer engagement
+3. A brief note on AI tool usage — specifically: which tools you used, where in the exercise you used them, and how you distinguished AI-suggested changes from your own judgment. There is no penalty for using AI; transparency about how you used it is what matters.
 
 ## Interviewer notes
 
