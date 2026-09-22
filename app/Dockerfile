@@ -1,8 +1,8 @@
-FROM python:3.11-slim
+FROM cgr.dev/stf.jus.br/python:3.12-dev
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apk update && apk add --no-cache \
     curl \
     vim \
     netcat-traditional \
@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY . /app
 
-RUN ls -al
 RUN pip install --no-cache-dir -r requirements.txt
 
 ENV FLASK_APP=app.py
