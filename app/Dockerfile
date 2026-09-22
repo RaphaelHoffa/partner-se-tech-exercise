@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY . /app
 
+RUN ls -al
 RUN pip install --no-cache-dir -r requirements.txt
 
 ENV FLASK_APP=app.py
