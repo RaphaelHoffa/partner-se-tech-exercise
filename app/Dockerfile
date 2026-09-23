@@ -3,11 +3,14 @@ USER root
 
 WORKDIR /app
 COPY pip.conf /etc/pip.conf
+ENV PIP_CONFIG_FILE=/etc/pip.conf
 RUN apk add --no-cache curl netcat-openbsd vim
 
 COPY . /app
 
 RUN pip install --no-cache-dir -r requirements.txt
+
+USER nonroot
 
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=development
