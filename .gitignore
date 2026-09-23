@@ -43,4 +43,4 @@ logs/
 .coverage
 htmlcov/
 
-app/pip.conf
+pip.conf
