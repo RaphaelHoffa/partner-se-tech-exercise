@@ -1,12 +1,9 @@
-FROM cgr.dev/stf.jus.br/python:3.12-dev
+FROM cgr.dev/chainguard/python:latest-dev
+USER root
 
 WORKDIR /app
-
-RUN apk update && apk add --no-cache \
-    curl \
-    vim \
-    netcat-traditional \
-    && rm -rf /var/lib/apt/lists/*
+COPY pip.conf /etc/pip.conf
+RUN apk add --no-cache curl netcat-openbsd vim
 
 COPY . /app
 
