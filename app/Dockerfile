@@ -1,14 +1,14 @@
 FROM cgr.dev/chainguard/python:latest-dev
 USER root
 
-WORKDIR /harness/app
-COPY pip.conf /etc/pip.conf
+WORKDIR /app
+COPY app/pip.conf /etc/pip.conf
 ENV PIP_CONFIG_FILE=/etc/pip.conf
 RUN apk add --no-cache curl netcat-openbsd vim
 
-COPY . /harness/app
+COPY . /app
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r app/requirements.txt
 
 USER nonroot
 
