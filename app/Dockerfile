@@ -2,7 +2,7 @@ FROM cgr.dev/chainguard/python:latest-dev
 USER root
 
 WORKDIR /app
-COPY pip.conf /etc/pip.conf
+COPY app/pip.conf /etc/pip.conf
 ENV PIP_CONFIG_FILE=/etc/pip.conf
 RUN apk add --no-cache curl netcat-openbsd vim
 
