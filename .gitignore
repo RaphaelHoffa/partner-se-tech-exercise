@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+
+# Environment variables
+.env
+!.env.example
+
+# Docker artifacts
+Dockerfile.converted
+dockerbkp/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+app/pip.conf
