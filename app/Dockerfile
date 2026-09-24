@@ -1,31 +1,36 @@
 # stage to build the image
 FROM cgr.dev/chainguard/python:latest-dev AS builder
+
+WORKDIR /build
+
 USER root
+RUN apk add --no-cache curl postgresql-dev
 
-WORKDIR /app
-RUN apk add --no-cache curl netcat-openbsd vim
+# --copies force Python,
+RUN python -m venv --copies /venv
+ENV PATH="/venv/bin:$PATH"
 
-COPY . /app
+COPY requirements.txt .
 
-# mount the secret and pip wheel just for the dependencies
+# Install dependenci on /venv
 RUN --mount=type=secret,id=pip_conf,target=/etc/pip.conf \
     PIP_CONFIG_FILE=/etc/pip.conf \
-    pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.txt 
+    pip install --no-cache-dir -r requirements.txt
 
-USER nonroot
-
+# ==========================================
 # new stage to have a "clean" image
-
 FROM cgr.dev/chainguard/python:latest
 
 WORKDIR /app
 
-COPY --from=builder /app/wheels /wheels
-COPY --from=builder /app/requirements.txt .
+# Bring the venv from builder (stage 1)
+COPY --from=builder --chown=nonroot:nonroot /venv /venv
 
-#use the clean installation from wheel directory
-RUN pip install --no-index --find-links=/wheels -r requirements.txt \
-    && rm -rf /wheels
+# Bring the code
+COPY --chown=nonroot:nonroot . /app
+
+# Add path
+ENV PATH="/venv/bin:$PATH"
 
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=development
@@ -34,6 +39,5 @@ ENV PYTHONUNBUFFERED=1
 
 EXPOSE 8000
 
-ENTRYPOINT ["/app/entrypoint.sh"]
-
-
+#execution
+ENTRYPOINT ["/venv/bin/python", "app.py"]

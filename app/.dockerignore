@@ -1,5 +1,7 @@
-pip.conf
+venv/
 __pycache__/
 *.pyc
-*.pyo
+.git/
 .env
+*.md
+.pytest_cache/
