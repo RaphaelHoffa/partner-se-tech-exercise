@@ -3,6 +3,9 @@ services:
   web:
     build:
       context: ./app
+      dockerfile: Dockerfile
+      secrets:
+        - pip_conf # adding pip.conf as Secrect
     ports:
       - "8000:8000"
     environment:
@@ -27,3 +30,8 @@ services:
 
 volumes:
   postgres_data:
+
+# adding pip.conf as Secrect
+secrets:
+  pip_conf:
+    file: app/pip.conf

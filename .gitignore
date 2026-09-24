@@ -43,3 +43,7 @@ logs/
 .coverage
 htmlcov/
 
+# Pip credentials — never commit tokens
+app/pip.conf
+pip.conf
+
