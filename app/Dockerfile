@@ -10,7 +10,7 @@ RUN apk add --no-cache curl postgresql-dev
 RUN python -m venv --copies /venv
 ENV PATH="/venv/bin:$PATH"
 
-COPY app/requirements.txt .
+COPY requirements.txt .
 
 # Install dependenci on /venv
 RUN --mount=type=secret,id=pip_conf,target=/etc/pip.conf \
