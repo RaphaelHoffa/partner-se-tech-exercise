@@ -9,6 +9,8 @@ The Dockerfile rewrite - build using two Chainguard image.
   Python:latest
     Distroless runtime — only the app code - is purpose-built to contain only the minimal set of packages required to run Python — no shell, no package manager, no OS utilities
 
+Tool used: https://edu.chainguard.dev/chainguard/containers/migration/migration-tools/dockerfile-conversion/
+
 #### pip.conf 
 
 A new app/pip.conf file was added to redirect all pip install operations to Chainguard's Python Libraries
